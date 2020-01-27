@@ -235,8 +235,13 @@ class Juicer extends React.Component<Props, State> {
             afterInitialLimit || !initialLimit || index < initialLimit,
         ))();
 
-    const activeJuice = (() =>
-      activeIndex ? filteredJuicer[activeIndex] : undefined)();
+    const activeJuice = (() => {
+      if (activeIndex !== undefined && activeIndex > -1) {
+        return filteredJuicer[activeIndex];
+      } else {
+        return undefined;
+      }
+    })();
 
     return (
       <ThemeProvider theme={defaultsDeep({ ...theme }, styles.defaultTheme)}>
